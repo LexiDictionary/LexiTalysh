@@ -1,9 +1,8 @@
-/* LexiTalysh — Green and Red made prominent; White background; Blue for details */
 :root {
-  --brand-primary: #007CC0;    /* Blue — for details, links, headers */
-  --brand-secondary: #038C33;  /* Green — now prominent (learning, success) */
-  --brand-tertiary: #D91E1E;   /* Red — now prominent (actions, alerts) */
-  --brand-light: #FFFFFF;      /* White — background */
+  --brand-primary: #007CC0;
+  --brand-secondary: #038C33;
+  --brand-tertiary: #D91E1E;
+  --brand-light: #FFFFFF;
   --brand-bg: #FFFFFF;
   --text-primary: #1a1a1a;
   --text-secondary: #4a4a4a;
@@ -352,7 +351,7 @@ body {
 
 .sense-number {
   font-weight: 700;
-  color: var(--brand-tertiary); /* 🔴 Red for sense numbering */
+  color: var(--brand-tertiary);
   margin-right: 8px;
 }
 
@@ -511,12 +510,12 @@ body {
   padding: 8px 0;
   border-bottom: 1px solid var(--border-color);
   cursor: pointer;
-  color: var(--brand-tertiary); /* 🔴 Red for filter items */
+  color: var(--brand-tertiary); 
   font-weight: 500;
 }
 
 .filter-word-item:hover {
-  color: var(--brand-secondary); /* 🟢 Green on hover */
+  color: var(--brand-secondary);
   text-decoration: underline;
 }
 
@@ -557,7 +556,7 @@ body {
 }
 
 .answer-option:hover:not(.selected):not(.correct):not(.incorrect) {
-  border-color: var(--brand-tertiary); /* 🔴 Red hover */
+  border-color: var(--brand-tertiary);
   background: #fef6f6;
 }
 
@@ -598,7 +597,7 @@ body {
   padding: 16px;
   border-radius: 8px;
   background: #f8fafc;
-  border-left: 3px solid var(--brand-secondary); /* 🟢 Green bar */
+  border-left: 3px solid var(--brand-secondary);
 }
 
 .exercise-feedback h4 {
@@ -623,12 +622,12 @@ body {
 }
 
 .next-btn {
-  background: var(--brand-tertiary); /* 🔴 Red next button */
+  background: var(--brand-tertiary);
   color: white;
 }
 
 .next-btn:hover {
-  background: var(--brand-secondary); /* 🟢 Green on hover */
+  background: var(--brand-secondary);
 }
 
 .close-btn {
@@ -641,7 +640,7 @@ body {
 }
 
 .goto-lemma-btn {
-  background: var(--brand-secondary); /* 🟢 Green */
+  background: var(--brand-secondary);
   color: white;
   border: none;
   padding: 6px 12px;
@@ -653,7 +652,7 @@ body {
 }
 
 .goto-lemma-btn:hover {
-  background: var(--brand-tertiary); /* 🔴 Red on hover */
+  background: var(--brand-tertiary);
   transform: translateY(-1px);
 }
 
@@ -666,7 +665,7 @@ body {
   padding: 12px;
   background: #f8fafc;
   border-radius: 8px;
-  border-left: 3px solid var(--brand-secondary); /* 🟢 Green */
+  border-left: 3px solid var(--brand-secondary);
 }
 
 .dictionary-footer {
