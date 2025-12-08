@@ -22,12 +22,19 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--brand-bg);
   color: var(--text-primary);
   line-height: 1.6;
   padding: 20px 16px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .dictionary-wrapper {
@@ -36,6 +43,9 @@ body {
   background: var(--white);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 40px);
 }
 
 .dictionary-header {
@@ -48,7 +58,7 @@ body {
   font-family: 'Source Serif Pro', serif;
   font-weight: 700;
   font-size: 2.2rem;
-  color: var(--brand-primary); /* Blue for identity */
+  color: var(--brand-primary);
   letter-spacing: -0.5px;
 }
 
@@ -81,6 +91,7 @@ body {
   cursor: pointer;
   transition: all 0.2s;
   text-align: center;
+  border-radius: 4px;
 }
 
 .direction-btn:hover:not(.active) {
@@ -88,7 +99,7 @@ body {
 }
 
 .direction-btn.active {
-  background: var(--brand-tertiary); /* 🔴 Red for active direction */
+  background: var(--brand-tertiary);
   color: white;
   border-color: var(--brand-tertiary);
 }
@@ -97,27 +108,33 @@ body {
   position: relative;
   display: flex;
   gap: 12px;
-  align-items: center;
   flex-direction: column;
-  align-items: stretch;
 }
 
 .search-input {
-  flex: 1;
+  width: 100%;
   padding: 12px 16px;
   font-size: 1.1rem;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   font-family: 'Inter', sans-serif;
   outline: none;
+  transition: all 0.2s;
 }
 
 .search-input:focus {
-  border-color: var(--brand-tertiary); /* 🔴 Red focus */
+  border-color: var(--brand-tertiary);
   box-shadow: 0 0 0 2px rgba(217, 30, 30, 0.2);
 }
 
-.random-btn, .exercise-btn {
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+
+.random-btn, .exercise-btn, .keyboard-toggle-btn {
   padding: 12px 16px;
   border: none;
   border-radius: 4px;
@@ -126,9 +143,9 @@ body {
   transition: all 0.2s;
   white-space: nowrap;
   font-size: 0.9rem;
+  text-align: center;
 }
 
-/* 🟢 Green for "Random Word" — learning = growth */
 .random-btn {
   background: var(--brand-secondary);
   color: white;
@@ -139,7 +156,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* 🔴 Red for "Test Yourself" — energy, action */
 .exercise-btn {
   background: var(--brand-tertiary);
   color: white;
@@ -150,31 +166,18 @@ body {
   transform: translateY(-1px);
 }
 
-.keyboard-toggle-container {
-  margin-top: 12px;
-  width: 100%;
-}
-
 .keyboard-toggle-btn {
-  padding: 10px 16px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  background: var(--brand-light);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-  width: 100%;
+  background: var(--brand-primary);
+  color: white;
 }
 
 .keyboard-toggle-btn:hover {
-  background: #f0f0f0;
+  background: #006ba8;
+  transform: translateY(-1px);
 }
 
 .virtual-keyboard {
-  margin-top: 16px;
+  margin-top: 12px;
   background: white;
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -227,6 +230,7 @@ body {
 
 .results-container {
   padding: 0 32px 32px;
+  flex: 1;
 }
 
 .no-result {
@@ -236,9 +240,13 @@ body {
   font-style: italic;
 }
 
+.about-section {
+  padding: 24px 0;
+}
+
 .about-content {
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.8;
   margin-top: 12px;
 }
 
@@ -258,7 +266,7 @@ body {
 
 .pronunciation {
   font-family: 'Inter', sans-serif;
-  color: var(--brand-secondary); /* 🟢 Green for pronunciation */
+  color: var(--brand-secondary);
   font-size: 1.1rem;
   margin-bottom: 12px;
   font-style: italic;
@@ -274,16 +282,18 @@ body {
 .translation {
   font-size: 1.4rem;
   font-weight: 600;
-  color: var(--brand-primary); /* Blue for translation text */
+  color: var(--brand-primary);
   cursor: pointer;
   display: inline-block;
-  padding: 4px 0;
-  border-radius: 2px;
-  transition: background 0.2s;
+  padding: 4px 8px;
+  margin: 4px 0;
+  border-radius: 4px;
+  transition: all 0.2s;
 }
 
 .translation:hover {
-  background-color: rgba(0, 124, 192, 0.04);
+  background-color: rgba(0, 124, 192, 0.08);
+  transform: translateX(2px);
 }
 
 .pos, .topic-tag, .level-tag {
@@ -297,31 +307,34 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
 }
 
 .pos {
-  background: var(--brand-tertiary); /* 🔴 Red for part-of-speech */
+  background: var(--brand-tertiary);
   color: white;
 }
 
 .topic-tag {
-  background: var(--brand-secondary); /* 🟢 Green for topic */
+  background: var(--brand-secondary);
   color: white;
 }
 
 .level-tag {
-  background: var(--brand-primary); /* Blue for CEFR level */
+  background: var(--brand-primary);
   color: white;
 }
 
 .pos:hover, .topic-tag:hover, .level-tag:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .tags-container {
   display: flex;
   gap: 8px;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
 
 .sense-item {
@@ -441,6 +454,11 @@ body {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.derivative-word.linkable:hover {
+  color: var(--brand-tertiary);
 }
 
 .derivative-translation {
@@ -457,6 +475,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
 }
 
 .modal-content {
@@ -468,6 +487,7 @@ body {
   max-width: 600px;
   max-height: 80vh;
   overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .modal-header {
@@ -496,10 +516,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
 }
 
 .close-modal:hover {
   color: var(--text-primary);
+  transform: rotate(90deg);
 }
 
 .filter-word-list {
@@ -510,13 +532,15 @@ body {
   padding: 8px 0;
   border-bottom: 1px solid var(--border-color);
   cursor: pointer;
-  color: var(--brand-tertiary); 
+  color: var(--brand-tertiary);
   font-weight: 500;
+  transition: all 0.2s;
 }
 
 .filter-word-item:hover {
   color: var(--brand-secondary);
   text-decoration: underline;
+  padding-left: 8px;
 }
 
 .filter-word-item:last-child {
@@ -558,6 +582,7 @@ body {
 .answer-option:hover:not(.selected):not(.correct):not(.incorrect) {
   border-color: var(--brand-tertiary);
   background: #fef6f6;
+  transform: translateY(-2px);
 }
 
 .answer-option.selected {
@@ -628,6 +653,7 @@ body {
 
 .next-btn:hover {
   background: var(--brand-secondary);
+  transform: translateY(-1px);
 }
 
 .close-btn {
@@ -636,7 +662,8 @@ body {
 }
 
 .close-btn:hover {
-  background: #e2e8f0;
+  background: #cbd5e0;
+  transform: translateY(-1px);
 }
 
 .goto-lemma-btn {
@@ -671,23 +698,43 @@ body {
 .dictionary-footer {
   padding: 20px 32px;
   border-top: 1px solid var(--border-color);
+  background: var(--white);
   color: var(--text-light);
   font-size: 0.9rem;
   text-align: center;
+  margin-top: auto;
 }
 
 .university-link {
   color: var(--brand-primary);
   text-decoration: none;
+  transition: all 0.2s;
 }
 
 .university-link:hover {
   text-decoration: underline;
+  color: var(--brand-tertiary);
 }
 
 @media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .dictionary-wrapper {
+    min-height: calc(100vh - 20px);
+  }
+
+  .dictionary-header {
+    padding: 20px 20px 12px;
+  }
+
   .dictionary-header h1 {
     font-size: 1.8rem;
+  }
+
+  .control-bar {
+    padding: 16px 20px;
   }
 
   .headword {
@@ -706,19 +753,12 @@ body {
     min-width: auto;
   }
 
-  .search-container {
-    align-items: stretch;
-  }
-
   .button-group {
-    display: flex;
-    gap: 8px;
-    width: 100%;
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
-  .random-btn, .exercise-btn {
-    width: 100%;
+  .results-container {
+    padding: 0 20px 20px;
   }
 
   .derivatives-list {
@@ -732,5 +772,10 @@ body {
   .sense-item .tags-container {
     position: static;
     margin-top: 8px;
+  }
+
+  .dictionary-footer {
+    padding: 16px 20px;
+    font-size: 0.85rem;
   }
 }
